@@ -114,11 +114,14 @@
   .metric:nth-child(-n+2){ border-top: none; }
   .metric .k{ font-size: 12px; color: var(--text-3); }
   .metric .v{ font-size: 19px; font-weight: 600; font-family: Helvetica, Arial, sans-serif; }
-  .followers-metric{ cursor: pointer; border-radius: 8px; margin: -6px -8px; padding: 16px 8px 10px; transition: background .12s ease; }
-  .followers-metric:hover, .followers-metric:focus-visible{ background: var(--panel-2); outline: none; }
-  .followers-metric .chev{ display:inline-block; font-size: 10px; color: var(--text-3); transition: transform .15s ease; margin-left: 2px; }
-  .followers-metric[aria-expanded="true"] .chev{ transform: rotate(90deg); }
-  .followers-breakdown{ grid-column: 1 / -1; margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border); }
+  .followers-card{ cursor: pointer; transition: box-shadow .12s ease, border-color .12s ease; }
+  .followers-card:hover, .followers-card:focus-visible{ border-color: var(--text-3); outline: none; }
+  .followers-card .ph{ justify-content: space-between; }
+  .followers-card .ph .chev{ display:inline-block; font-size: 12px; color: var(--text-3); transition: transform .15s ease; margin-left: auto; }
+  .followers-card[aria-expanded="true"] .ph .chev{ transform: rotate(90deg); }
+  .follower-total{ font-family: Helvetica, Arial, sans-serif; font-size: 40px; font-weight: 600; line-height: 1; }
+  .follower-sub{ font-size: 12.5px; color: var(--text-3); margin-top: 6px; }
+  .followers-breakdown{ margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--border); }
   .fb-row{ display:flex; align-items:center; justify-content:space-between; padding: 6px 0; font-size: 13.5px; color: var(--text-2); }
   .fb-row .num{ font-family: Helvetica, Arial, sans-serif; font-weight: 600; color: var(--text); }
   .fb-row.total{ border-top: 1px solid var(--border); margin-top: 4px; padding-top: 10px; font-weight: 600; color: var(--text); }
@@ -246,15 +249,7 @@
           <div class="metric"><div class="k">Content interactions</div><div class="v num">2,900</div></div>
           <div class="metric"><div class="k">Link clicks</div><div class="v num">9,700</div></div>
           <div class="metric"><div class="k">Page visits</div><div class="v num">14,000</div></div>
-          <div class="metric followers-metric" data-platform="fb" tabindex="0" role="button" aria-expanded="false" aria-controls="fb-breakdown">
-            <div class="k">Total followers (live) <span class="chev" aria-hidden="true">&#9656;</span></div>
-            <div class="v num">3,010</div>
-          </div>
-        </div>
-        <div class="followers-breakdown" id="fb-breakdown" hidden>
-          <div class="fb-row"><span>Base followers (Jan 1)</span><span class="num">2,673</span></div>
-          <div class="fb-row"><span>Gained (Jan 1 - Sep 3)</span><span class="num">+337</span></div>
-          <div class="fb-row total"><span>Current total (live)</span><span class="num">3,010</span></div>
+          <div class="metric"><div class="k">New followers</div><div class="v num">337</div></div>
         </div>
       </div>
       <div class="platform-card ig">
@@ -265,11 +260,32 @@
           <div class="metric"><div class="k">Content interactions</div><div class="v num">10,900</div></div>
           <div class="metric"><div class="k">Link clicks</div><div class="v num">8,100</div></div>
           <div class="metric"><div class="k">Profile visits</div><div class="v num">9,300</div></div>
-          <div class="metric followers-metric" data-platform="ig" tabindex="0" role="button" aria-expanded="false" aria-controls="ig-breakdown">
-            <div class="k">Total followers (live) <span class="chev" aria-hidden="true">&#9656;</span></div>
-            <div class="v num">6,244</div>
-          </div>
+          <div class="metric"><div class="k">New followers</div><div class="v num">1,179</div></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Live followers</h2>
+      <p>Current follower counts, pulled live from Meta Business Suite - click a card to see how much of it came from this period's growth versus the base you started with.</p>
+    </div>
+    <div class="platform-grid">
+      <div class="platform-card fb followers-card" data-platform="fb" tabindex="0" role="button" aria-expanded="false" aria-controls="fb-breakdown">
+        <div class="ph"><span class="dot"></span><h3>Facebook</h3><span class="chev" aria-hidden="true">&#9656;</span></div>
+        <div class="follower-total num">3,010</div>
+        <div class="follower-sub">total followers, live</div>
+        <div class="followers-breakdown" id="fb-breakdown" hidden>
+          <div class="fb-row"><span>Base followers (Jan 1)</span><span class="num">2,673</span></div>
+          <div class="fb-row"><span>Gained (Jan 1 - Sep 3)</span><span class="num">+337</span></div>
+          <div class="fb-row total"><span>Current total (live)</span><span class="num">3,010</span></div>
+        </div>
+      </div>
+      <div class="platform-card ig followers-card" data-platform="ig" tabindex="0" role="button" aria-expanded="false" aria-controls="ig-breakdown">
+        <div class="ph"><span class="dot"></span><h3>Instagram</h3><span class="chev" aria-hidden="true">&#9656;</span></div>
+        <div class="follower-total num">6,244</div>
+        <div class="follower-sub">total followers, live</div>
         <div class="followers-breakdown" id="ig-breakdown" hidden>
           <div class="fb-row"><span>Base followers (Jan 1)</span><span class="num">5,065</span></div>
           <div class="fb-row"><span>Gained (Jan 1 - Sep 3)</span><span class="num">+1,179</span></div>
@@ -472,7 +488,7 @@
   renderBoard();
 
   // ---------- Followers breakdown toggle ----------
-  document.querySelectorAll('.followers-metric').forEach(function(el){
+  document.querySelectorAll('.followers-card').forEach(function(el){
     function toggle(){
       var id = el.getAttribute('aria-controls');
       var panel = document.getElementById(id);
