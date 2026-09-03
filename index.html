@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cloverdale Social Scorecard</title>
+
 <style>
   :root{
     color-scheme: light;
@@ -113,6 +114,15 @@
   .metric:nth-child(-n+2){ border-top: none; }
   .metric .k{ font-size: 12px; color: var(--text-3); }
   .metric .v{ font-size: 19px; font-weight: 600; font-family: Helvetica, Arial, sans-serif; }
+  .followers-metric{ cursor: pointer; border-radius: 8px; margin: -6px -8px; padding: 16px 8px 10px; transition: background .12s ease; }
+  .followers-metric:hover, .followers-metric:focus-visible{ background: var(--panel-2); outline: none; }
+  .followers-metric .chev{ display:inline-block; font-size: 10px; color: var(--text-3); transition: transform .15s ease; margin-left: 2px; }
+  .followers-metric[aria-expanded="true"] .chev{ transform: rotate(90deg); }
+  .followers-breakdown{ grid-column: 1 / -1; margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border); }
+  .fb-row{ display:flex; align-items:center; justify-content:space-between; padding: 6px 0; font-size: 13.5px; color: var(--text-2); }
+  .fb-row .num{ font-family: Helvetica, Arial, sans-serif; font-weight: 600; color: var(--text); }
+  .fb-row.total{ border-top: 1px solid var(--border); margin-top: 4px; padding-top: 10px; font-weight: 600; color: var(--text); }
+  .fb-row.total .num{ font-size: 15px; }
 
   /* ---------- Charts ---------- */
   .chart-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
@@ -182,9 +192,6 @@
     td.title{ max-width: 220px; }
   }
 </style>
-</head>
-<body>
-
 
 <div class="wrap">
 
@@ -239,7 +246,15 @@
           <div class="metric"><div class="k">Content interactions</div><div class="v num">2,900</div></div>
           <div class="metric"><div class="k">Link clicks</div><div class="v num">9,700</div></div>
           <div class="metric"><div class="k">Page visits</div><div class="v num">14,000</div></div>
-          <div class="metric"><div class="k">New followers</div><div class="v num">337</div></div>
+          <div class="metric followers-metric" data-platform="fb" tabindex="0" role="button" aria-expanded="false" aria-controls="fb-breakdown">
+            <div class="k">Total followers (live) <span class="chev" aria-hidden="true">&#9656;</span></div>
+            <div class="v num">3,010</div>
+          </div>
+        </div>
+        <div class="followers-breakdown" id="fb-breakdown" hidden>
+          <div class="fb-row"><span>Base followers (Jan 1)</span><span class="num">2,673</span></div>
+          <div class="fb-row"><span>Gained (Jan 1 - Sep 3)</span><span class="num">+337</span></div>
+          <div class="fb-row total"><span>Current total (live)</span><span class="num">3,010</span></div>
         </div>
       </div>
       <div class="platform-card ig">
@@ -250,7 +265,15 @@
           <div class="metric"><div class="k">Content interactions</div><div class="v num">10,900</div></div>
           <div class="metric"><div class="k">Link clicks</div><div class="v num">8,100</div></div>
           <div class="metric"><div class="k">Profile visits</div><div class="v num">9,300</div></div>
-          <div class="metric"><div class="k">New followers</div><div class="v num">1,179</div></div>
+          <div class="metric followers-metric" data-platform="ig" tabindex="0" role="button" aria-expanded="false" aria-controls="ig-breakdown">
+            <div class="k">Total followers (live) <span class="chev" aria-hidden="true">&#9656;</span></div>
+            <div class="v num">6,244</div>
+          </div>
+        </div>
+        <div class="followers-breakdown" id="ig-breakdown" hidden>
+          <div class="fb-row"><span>Base followers (Jan 1)</span><span class="num">5,065</span></div>
+          <div class="fb-row"><span>Gained (Jan 1 - Sep 3)</span><span class="num">+1,179</span></div>
+          <div class="fb-row total"><span>Current total (live)</span><span class="num">6,244</span></div>
         </div>
       </div>
     </div>
@@ -447,7 +470,22 @@
   });
 
   renderBoard();
+
+  // ---------- Followers breakdown toggle ----------
+  document.querySelectorAll('.followers-metric').forEach(function(el){
+    function toggle(){
+      var id = el.getAttribute('aria-controls');
+      var panel = document.getElementById(id);
+      if(!panel) return;
+      var open = el.getAttribute('aria-expanded') === 'true';
+      el.setAttribute('aria-expanded', open ? 'false' : 'true');
+      panel.hidden = open;
+    }
+    el.addEventListener('click', toggle);
+    el.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
+    });
+  });
 </script>
 
-</body>
 </html>
