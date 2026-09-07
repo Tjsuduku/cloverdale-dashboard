@@ -198,37 +198,6 @@
   .spotlight .row .k{ font-size: 10.5px; color: var(--text-3); font-family: var(--mono); }
   .spotlight .row .v{ font-family: var(--mono); font-size: 19px; font-weight: 700; color: var(--text); margin-top: 2px; }
 
-  /* ---------- Live campaign ---------- */
-  .campaign-card{ background: var(--panel); border: 1px solid var(--border); border-radius: 10px; box-shadow: var(--shadow); overflow: hidden; cursor: pointer; }
-  .campaign-card:hover{ border-color: var(--border-2); }
-  .campaign-top{ padding: 20px 22px; display:flex; align-items:center; gap: 16px; flex-wrap: wrap; }
-  .campaign-top > div{ min-width: 0; flex: 1 1 240px; }
-  .campaign-status{ display:inline-flex; align-items:center; gap:6px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 4px 9px 4px 7px; border-radius: 999px; background: var(--up-tint); color: var(--accent-ink); border: 1px solid rgba(34,226,160,0.3); font-family: var(--mono); flex: none; }
-  .campaign-status .dot{ width: 6px; height: 6px; background: var(--accent); animation: pulse-dot 1.8s ease-in-out infinite; }
-  .campaign-name{ font-family: var(--mono); font-weight: 700; font-size: 15px; color: var(--text); overflow-wrap: break-word; word-break: break-word; }
-  .campaign-sub{ font-family: var(--mono); font-size: 11.5px; color: var(--text-3); margin-top: 3px; }
-  .campaign-chev{ margin-left: auto; color: var(--text-3); font-family: var(--mono); font-size: 12px; transition: transform .2s ease; }
-  .campaign-card[aria-expanded="true"] .campaign-chev{ transform: rotate(90deg); }
-  .campaign-metrics{ display:grid; grid-template-columns: repeat(5, 1fr); gap: 0; border-top: 1px solid var(--border); }
-  .campaign-metric{ padding: 14px 18px; border-left: 1px solid var(--border); }
-  .campaign-metric:first-child{ border-left: none; }
-  .campaign-metric .k{ font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-3); font-family: var(--mono); }
-  .campaign-metric .v{ font-family: var(--mono); font-size: 18px; font-weight: 700; color: var(--text); margin-top: 5px; }
-  .campaign-metric .v.accent{ color: var(--accent-ink); }
-  .campaign-metric .v.amber{ color: var(--amber); }
-  .campaign-detail{
-    max-height: 0; overflow: hidden; opacity: 0;
-    transition: max-height .32s ease, opacity .26s ease;
-    border-top: 1px solid transparent;
-  }
-  .campaign-detail.open{ max-height: 420px; opacity: 1; border-top-color: var(--border); }
-  .campaign-detail-inner{ padding: 18px 22px 22px; }
-  .campaign-detail-inner .lede{ font-size: 12px; color: var(--text-3); font-family: var(--mono); margin-bottom: 14px; letter-spacing: 0.03em; text-transform: uppercase; }
-  .campaign-meta-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px 20px; }
-  .campaign-meta-grid .item .k{ font-size: 11px; color: var(--text-3); font-family: var(--mono); }
-  .campaign-meta-grid .item .v{ font-size: 13.5px; color: var(--text); font-family: var(--mono); margin-top: 4px; font-weight: 600; }
-  .campaign-note{ margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--border); font-size: 12px; color: var(--text-3); font-family: var(--mono); }
-
   /* ---------- Leaderboard ---------- */
   .filters{ display:flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
   .chip{ border: 1px solid var(--border); background: var(--panel); color: var(--text-2); font: inherit; font-family: var(--mono); font-size: 12px; font-weight: 600; padding: 7px 14px; border-radius: 6px; cursor: pointer; transition: all .12s ease; }
@@ -268,15 +237,10 @@
 
   @media (max-width: 900px){
     .platform-grid{ grid-template-columns: 1fr 1fr; }
-    .campaign-metrics{ grid-template-columns: repeat(3, 1fr); }
-    .campaign-metric:nth-child(3n+1){ border-left: none; }
   }
   @media (max-width: 760px){
     .stats{ grid-template-columns: 1fr 1fr; }
     .platform-grid, .chart-grid, .spotlight-grid{ grid-template-columns: 1fr; }
-    .campaign-metrics{ grid-template-columns: 1fr 1fr; }
-    .campaign-metric:nth-child(2n+1){ border-left: none; }
-    .campaign-meta-grid{ grid-template-columns: 1fr 1fr; }
     td.title{ max-width: 220px; }
     .frame-live-text{ display:none; }
     .frame-live::after{ content: "24h"; color: var(--text-2); font-weight: 600; }
@@ -314,8 +278,8 @@
     </div>
     <div class="stat">
       <div class="label">New followers</div>
-      <div class="value num">2,526</div>
-      <div class="delta up">FB +343 - IG +1,207 - LI +976</div>
+      <div class="value num">2,523</div>
+      <div class="delta up">FB +341 - IG +1,206 - LI +976</div>
     </div>
     <div class="stat">
       <div class="label">Facebook's best month</div>
@@ -338,24 +302,24 @@
     <div class="platform-grid">
       <div class="platform-card fb followers-card" data-platform="fb" tabindex="0" role="button" aria-expanded="false" aria-controls="fb-breakdown">
         <div class="ph"><span class="platform-icon pi-fb" aria-hidden="true">f</span><h3>Facebook</h3><span class="chev" aria-hidden="true">&#9656;</span></div>
-        <div class="follower-total num">3,016</div>
+        <div class="follower-total num">3,014</div>
         <div class="follower-sub">total followers, live</div>
         <div class="followers-breakdown" id="fb-breakdown">
-          <div class="growth-bar" aria-hidden="true"><div class="fill" style="width:11.4%"></div></div>
+          <div class="growth-bar" aria-hidden="true"><div class="fill" style="width:11.3%"></div></div>
           <div class="fb-row"><span>Base followers (Jan 1)</span><span class="num">2,673</span></div>
-          <div class="fb-row"><span>Gained (Jan 1 - Sep 7)</span><span class="num">+343</span></div>
-          <div class="fb-row total"><span>Current total (live)</span><span class="num">3,016</span></div>
+          <div class="fb-row"><span>Gained (Jan 1 - Sep 7)</span><span class="num">+341</span></div>
+          <div class="fb-row total"><span>Current total (live)</span><span class="num">3,014</span></div>
         </div>
       </div>
       <div class="platform-card ig followers-card" data-platform="ig" tabindex="0" role="button" aria-expanded="false" aria-controls="ig-breakdown">
         <div class="ph"><span class="platform-icon pi-ig" aria-hidden="true">i</span><h3>Instagram</h3><span class="chev" aria-hidden="true">&#9656;</span></div>
-        <div class="follower-total num">6,272</div>
+        <div class="follower-total num">6,271</div>
         <div class="follower-sub">total followers, live</div>
         <div class="followers-breakdown" id="ig-breakdown">
           <div class="growth-bar" aria-hidden="true"><div class="fill" style="width:19.2%"></div></div>
           <div class="fb-row"><span>Base followers (Jan 1)</span><span class="num">5,065</span></div>
-          <div class="fb-row"><span>Gained (Jan 1 - Sep 7)</span><span class="num">+1,207</span></div>
-          <div class="fb-row total"><span>Current total (live)</span><span class="num">6,272</span></div>
+          <div class="fb-row"><span>Gained (Jan 1 - Sep 7)</span><span class="num">+1,206</span></div>
+          <div class="fb-row total"><span>Current total (live)</span><span class="num">6,271</span></div>
         </div>
       </div>
       <div class="platform-card li followers-card" data-platform="li" tabindex="0" role="button" aria-expanded="false" aria-controls="li-breakdown">
@@ -387,7 +351,7 @@
           <div class="metric"><div class="k">Content interactions</div><div class="v num">3.1K</div></div>
           <div class="metric"><div class="k">Link clicks</div><div class="v num">9.7K</div></div>
           <div class="metric"><div class="k">Page visits</div><div class="v num">14.2K</div></div>
-          <div class="metric"><div class="k">New followers</div><div class="v num">343</div></div>
+          <div class="metric"><div class="k">New followers</div><div class="v num">341</div></div>
         </div>
       </div>
       <div class="platform-card ig">
@@ -398,7 +362,7 @@
           <div class="metric"><div class="k">Content interactions</div><div class="v num">11.3K</div></div>
           <div class="metric"><div class="k">Link clicks</div><div class="v num">8.2K</div></div>
           <div class="metric"><div class="k">Profile visits</div><div class="v num">9.6K</div></div>
-          <div class="metric"><div class="k">New followers</div><div class="v num">1,207</div></div>
+          <div class="metric"><div class="k">New followers</div><div class="v num">1,206</div></div>
         </div>
       </div>
       <div class="platform-card li">
@@ -410,48 +374,6 @@
           <div class="metric"><div class="k">Reposts</div><div class="v num">10</div></div>
           <div class="metric"><div class="k">Live followers</div><div class="v num">7,927</div></div>
           <div class="metric"><div class="k">New followers</div><div class="v num">976</div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="section-head">
-      <div class="eyebrow">Ad spend</div>
-      <h2>Live campaign</h2>
-      <p>Pulled live from Meta Ads Manager. Click the card to expand the results summary and campaign metadata.</p>
-    </div>
-    <div class="campaign-card" id="campaignCard" tabindex="0" role="button" aria-expanded="false" aria-controls="campaignDetail">
-      <div class="campaign-top">
-        <span class="campaign-status"><span class="dot"></span>live</span>
-        <div>
-          <div class="campaign-name">Authentically_Canadian_IG_Engagement</div>
-          <div class="campaign-sub">Ad set: IG Engagement - BC AB Toronto &#183; Instagram &#183; Post engagement</div>
-        </div>
-        <span class="campaign-chev">&#9656; expand</span>
-      </div>
-      <div class="campaign-metrics">
-        <div class="campaign-metric"><div class="k">Daily budget</div><div class="v amber num">$70.00</div></div>
-        <div class="campaign-metric"><div class="k">Spent (30d)</div><div class="v num">$178.26</div></div>
-        <div class="campaign-metric"><div class="k">Results</div><div class="v accent num">17,567</div></div>
-        <div class="campaign-metric"><div class="k">Cost / result</div><div class="v num">$0.01</div></div>
-        <div class="campaign-metric"><div class="k">Reach</div><div class="v num">31,824</div></div>
-      </div>
-      <div class="campaign-detail" id="campaignDetail">
-        <div class="campaign-detail-inner">
-          <div class="lede">Results summary - last 30 days (Aug 7 - Sep 5, 2026)</div>
-          <div class="campaign-meta-grid">
-            <div class="item"><div class="k">Objective</div><div class="v">Post engagement</div></div>
-            <div class="item"><div class="k">Result type</div><div class="v">Post engagements</div></div>
-            <div class="item"><div class="k">Impressions</div><div class="v">35,739</div></div>
-            <div class="item"><div class="k">Frequency</div><div class="v">1.12</div></div>
-            <div class="item"><div class="k">Budget type</div><div class="v">Daily, ad-set level</div></div>
-            <div class="item"><div class="k">Placements</div><div class="v">Instagram feed &amp; reels</div></div>
-            <div class="item"><div class="k">Audience</div><div class="v">BC, AB, Toronto</div></div>
-            <div class="item"><div class="k">Ad account</div><div class="v">Cloverdale Paint Meta Ads</div></div>
-            <div class="item"><div class="k">Status</div><div class="v">Active</div></div>
-          </div>
-          <div class="campaign-note">64 other campaigns on this ad account are currently paused (off) - this is the only one spending right now.</div>
         </div>
       </div>
     </div>
@@ -702,7 +624,7 @@
   // ---------- Fade-in on load (snappy, terminal-style) ----------
   (function(){
     var reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var items = document.querySelectorAll('.stat, .platform-card, .chart-card, .spotlight, .board, .campaign-card');
+    var items = document.querySelectorAll('.stat, .platform-card, .chart-card, .spotlight, .board');
     items.forEach(function(el, i){
       if(reduceMotion){ return; }
       el.style.opacity = '0';
@@ -712,22 +634,6 @@
         el.style.opacity = '1';
         el.style.transform = 'translateY(0)';
       }, 30 + i * 22);
-    });
-  })();
-
-  // ---------- Campaign card expand/collapse ----------
-  (function(){
-    var card = document.getElementById('campaignCard');
-    if(!card) return;
-    var detail = document.getElementById('campaignDetail');
-    function toggle(){
-      var open = card.getAttribute('aria-expanded') === 'true';
-      card.setAttribute('aria-expanded', open ? 'false' : 'true');
-      detail.classList.toggle('open', !open);
-    }
-    card.addEventListener('click', toggle);
-    card.addEventListener('keydown', function(e){
-      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggle(); }
     });
   })();
 </script>
